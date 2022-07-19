@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>United States Hate Crimes</title>
+    <!-- CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="container-xxl my-5">
+      <div class="col-lg-8 mx-auto">
+        <h1 class="display-5 fw-bold text-center">United States Hate Crimes</h1>
+      </div>
+    </header>
+    <main class="container-xxl my-5">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="vstack gap-3">
+            <div id="yearSlider"></div>
+            <div id="stateCountVis"></div>
+            <div id="stateCountLegend"></div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div id="offenderBiasVis"></div>
+        </div>
+        <div class="col-lg-6">
+          <div class="vstack gap-3">
+            <div id="offenderVis"></div>
+            <div id="offenderLegend"></div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="vstack gap-3">
+            <div id="biasVis"></div>
+            <div id="biasLegend"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="container-xxl my-5">
+      <div class="col-lg-8 text-muted mx-auto small">
+        <ul>
+          <li
+            >Data source: The CSV data file is sourced from kaggle
+            <a
+              href="https://www.kaggle.com/datasets/louissebye/united-states-hate-crimes-19912017"
+              target="_blank"
+              >United States Hate Crimes (1991-2018)</a
+            >. The original data is from
+            <a
+              href="https://crime-data-explorer.fr.cloud.gov/downloads-and-docs"
+              target="_blank"
+              >Federal Bureau of Investigation Crime Data Explorer</a
+            >.</li
+          >
+          <!-- <li
+            >Code organization follows
+            <a href="https://www.cs171.org/2021/syllabus/" target="_blank"
+              >CSS 171 Visualization</a
+            >
+            accompanying
+            <a
+              href="https://github.com/CS171/Homework_instructions"
+              target="_blank"
+              >lab code</a
+            >.</li
+          >
+          <li
+            >Coordinate multiple views with shared state through
+            <a href="https://bl.ocks.org/mbostock/5872848" target="_blank"
+              >Dispatching Events</a
+            ></li
+          >
+          <li
+            ><a href="https://observablehq.com/@d3/color-legend"
+              >Color Legend</a
+            ></li
+          >
+          <li>
+            Choropleth References:
+            <ul>
+              <li
+                ><a href="https://observablehq.com/@d3/u-s-map" target="_blank"
+                  >U.S. Map</a
+                ></li
+              >
+              <li>
+                <a
+                  href="https://observablehq.com/@d3/us-state-choropleth?collection=@d3/d3-geo"
+                  target="_blank"
+                  >U.S. State Choropleth</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://observablehq.com/@d3/choropleth"
+                  target="_blank"
+                  >Choropleth</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            Stacked Bar References:
+            <ul>
+              <li
+                ><a href="https://bl.ocks.org/mbostock/3886208" target="_blank"
+                  >Stacked Bar Chart</a
+                ></li
+              >
+              <li
+                ><a
+                  href="https://observablehq.com/@d3/stacked-bar-chart"
+                  target="_blank"
+                  >Stacked Bar Chart</a
+                ></li
+              >
+              <li
+                ><a
+                  href="https://d3-graph-gallery.com/graph/barplot_stacked_hover.html"
+                  target="_blank"
+                  >Stacked barplot with tooltip</a
+                ></li
+              > -->
+            <!-- </ul>
+          </li>
+          <li>
+            Sankey References:
+            <ul>
+              <li
+                ><a
+                  href="https://bl.ocks.org/d3noob/06e72deea99e7b4859841f305f63ba85"
+                  target="_blank"
+                  >Sankey diagram using a csv file with v4</a
+                ></li
+              >
+              <li
+                ><a href="https://observablehq.com/@d3/sankey" target="_blank"
+                  >Sankey Diagram</a
+                ></li
+              >
+            </ul>
+          </li>
+        </ul> -->
+      </div>
+    </footer>
+    <div id="tooltip" class="tip card shadow p-2 small text-center"></div>
+    <!-- JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <script src="https://unpkg.com/d3-sankey@0"></script>
+    <script src="js/year-slider.js"></script>
+    <script src="js/legend.js"></script>
+    <script src="js/swatches.js"></script>
+    <script src="js/choropleth-vis.js"></script>
+    <script src="js/sankey-vis.js"></script>
+    <script src="js/stacked-bar-vis.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
